@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Detección de Drag and Drop</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/modernizr-custom.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        if(Modernizr.draganddrop){
+          $("#msg_eventos").html("El navegador si soporta Drag and Drop");
+          //document.getElementById("img1").addEventListener("dragstart",manejoDragStart,false);
+          $("#img1").bind("dragstart", manejoDragStart);
+
+          $("#zona_arrastrar").bind({"dragover":manejoDragOver,"drop":manejoDrop});
+
+        }else{
+          alert("Tu navegador no soporta Drag and Drop");
+        }
+
+        function manejoDragStart(evento) {
+          $("#msg_eventos").html("Inicio del evento Arrastrar: "+evento.target.id);
+        }
+
+        function manejoDragOver(evento) {
+          evento.stopPropagation();
+          evento.preventDefault();
+          $("#msg_eventos").html("Manejo Dragover en: "+evento.target.id);
+        }
+
+        function manejoDrop(evento) {
+          evento.stopPropagation();
+          evento.preventDefault();
+          $("#msg_eventos").html("Manejo drop en: "+evento.target.id);
+
+        }
+
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Detección de Drag and Drop</h1>
+    <div id="msg_eventos"></div>
+    <img id="img1" draggable="true" src="">
+    <div id="zona_arrastrar"></div>
+  </body>
+</html>

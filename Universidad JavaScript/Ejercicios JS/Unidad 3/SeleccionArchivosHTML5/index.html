@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+    <title>Seleccion Archivos HTML5</title>
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/modernizr-custom.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        if(Modernizr.dragandrop && window.FileList){
+          alert("Tu navegador Si soporta el API File y Drag and Drop");
+        }else{
+          alert("No se soporta Api File o Drag and Drop");
+        }
+        $("#archivos").change(manejoArchivos);
+        function manejoArchivos(evento){
+          var archivos = evento.target.files;
+          for (var i = 0; i < archivos.length; i++) {
+            var info = "<p>" + (i+1) + ") Nombre: "+archivos[i].name + ", Tamaño: " + archivos[i].size +
+              ", Tipo MIME: " +archivos[i].type +"</p>";
+              $("#salida").append(info);
+          }
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Seleccion Archivos HTML5</h1>
+    <form class="" action="index.html" method="post">
+      <label for="archivos">Selecciona uno o varios archivos</label>
+      <input type="file" name="archivos" id="archivos" multiple="">
+      <div id="salida"></div>
+    </form>
+  </body>
+</html>

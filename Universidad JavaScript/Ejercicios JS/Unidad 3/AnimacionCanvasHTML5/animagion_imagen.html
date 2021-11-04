@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Animación con Canvas</title>
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/modernizr-custom.js"></script>
+    <script type="text/javascript">
+      var x=0;
+      var direccion;
+      var imagen;
+      var canvas;
+      var ctx;
+      $("#document").ready(function(){
+        if(Modernizr.canvas){
+          //alert("Tu navegador Si soporta canvas");
+          animar();
+        }else{
+          alert("Tu navegador No soporta canvas");
+          return;
+        }
+      });
+
+      function animar() {
+        imagen = new Image();
+        canvas = document.getElementById("canvas1");
+        ctx = canvas.getContext("2d");
+        imagen.onload = function(){
+          ctx.clearRect(0,0,canvas.width,canvas.height);
+          ctx.drawImage(imagen,x,0);
+          actualizarDibujo();
+          setInterval(animar(),100);
+        };
+        imagen.src= "";
+      }
+
+      function actualizarDibujo() {
+        x++;
+        //volvemos al inicio
+        if (x > canvas.width) {
+          x=0;
+        }
+      }    
+    </script>
+  </head>
+  <body>
+    <h1>Animación con Canvas</h1>
+    <canvas id="canvas1" width="600" height="400" style="border: dotted gray 1px">
+      Tu navegador no soporta canvas
+    </canvas>
+  </body>
+</html>

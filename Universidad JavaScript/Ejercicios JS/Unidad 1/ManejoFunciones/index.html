@@ -1,0 +1,21 @@
+<<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Manejo de Funciones</title>
+    <script type="text/javascript" src="js/programa.js"/>
+    <script type="text/javascript">
+      function miFuncion1(){
+        alert("Hola desde función 1");
+      }
+    </script>
+  </head>
+  <body>
+      <button type="button" name="button" onclick="miFuncion1();">Ejecutar función 1</button>
+      <br>
+      <button type="button" name="button" onclick="miFuncion2('Allari');">Ejecutar funcion 2</button>
+      <br>
+      <label>Proporciona tu nombre y da enter:</label>
+      <input type="text" name="nombre" onchange="mostrarNombre(this);">
+  </body>
+</html>

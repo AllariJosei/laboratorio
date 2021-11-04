@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Circulos con Canvas</title>
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/modernizr-custom.js"></script>
+    <script type="text/javascript">
+      $("#document").ready(function(){
+        if(Modernizr.canvas){
+          //alert("Tu navegador Si soporta canvas");
+        }else{
+          alert("Tu navegador No soporta canvas");
+        }
+
+        var canvas = document.getElementById("canvas1");
+        var ctx = canvas.getContext("2d");
+        //Obtener el centro de el canvas
+        var centroX = canvas.width/2;
+        var centroY = canvas.height/2;
+        var radio = 50;
+        //Dibujamos circulo completo
+        ctx.beginPath();
+        ctx.arc(centroX,centroY,radio,0,2*Math.PI,false);
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = "yellow";
+        ctx.stroke();
+        ctx.fillStyle = "yellowgreen";
+        ctx.fill();
+
+        //Circulo 0.5 radian (90 grados) sentido manecillas del reloj
+        ctx.beginPath();
+        ctx.arc(60,60,radio,0,0.5*Math.PI);
+        ctx.strokeStyle = "black";
+        ctx.stroke();
+
+        //Circulo 180 grados, sentido manecillas del reloj
+        ctx.beginPath();
+        ctx.arc(300,60,radio,0,1*Math.PI);
+        ctx.stroke();
+
+        //Circulo 0.5 rad en el sentido contrario manecillas del reloj
+        ctx.beginPath();
+        ctx.arc(500,60,radio,0,-0.5*Math.PI,true);
+        ctx.stroke(); 
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Circulos con Canvas</h1>
+    <canvas id="canvas1" width="600" height="400" style="border: dotted gray 1px">
+      Tu navegador no soporta canvas
+    </canvas>
+  </body>
+</html>

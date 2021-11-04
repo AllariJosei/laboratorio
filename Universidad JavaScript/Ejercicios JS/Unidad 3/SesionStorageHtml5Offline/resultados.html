@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/modernizr-custom.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        if(sessionStorage.getItem("listado")){
+          $("#mensaje").html("<h3>Datos Almacenados en local Storage:</h3>");
+          $("#resultado").text(sessionStorage.getItem("listado"));
+        }else{
+          $("#mensaje").text("No hay datos en sessionStorage");
+        }
+      });
+    </script>
+    <title>Mostrar resultados</title>
+  </head>
+  <body>
+    <h1>Resultados</h1>
+    <div id="mensaje"></div>
+    <div id="resultado"></div>
+
+    <a href="index.html">Regresar al inicio</a>
+  </body>
+</html>

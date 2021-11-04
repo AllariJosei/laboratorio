@@ -1,0 +1,51 @@
+@font-face{
+	font-family: 'blackjack';
+	src: url('../fuentes/blackjack-webfont.eot');
+	src: url('../fuentes/blackjack-webfont.eot?iefix') format('eot'),
+	     url('../fuentes/blackjack-webfont.woff') format('woff'),
+	     url('../fuentes/blackjack-webfont.ttf') format('truetype'),
+	     url('../fuentes/blackjack-webfont.svg') format('svg');
+}
+
+body{
+  font-family: blackjack, Arial, Georgia;
+  color: grey;
+}
+
+h1{
+  text-shadow: 5px 5px 8px gray;
+}
+
+h2{
+  color: yellowgreen;
+}
+
+.cincel{
+  width: 100px;
+  height: 35px;
+  background: #CCC;
+  text-shadow: 1px 1px white,-1px -1px #333;
+  font-size: x-large;
+  text-align: center;
+  color: #D1D1D1;
+  font-weight: bold;
+}
+
+.neon{
+  margin-top: 20px;
+  text-align: center;
+  width: 300px;
+  height: 80px;
+  background: black;
+  font-size: 50px;
+  color: white;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff, 0 0 20px #ff00de, 0 0 70px #ff00de;
+}
+
+/*Texto multicolumna*/
+p{
+  column-count: 2;
+  text-align: justify;
+  column-gap: 40px;
+  column-rule: 1px dashed gray;
+}

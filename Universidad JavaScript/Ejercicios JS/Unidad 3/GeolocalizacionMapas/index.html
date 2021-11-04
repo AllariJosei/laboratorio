@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+    <title>Mapas de Geolocalización</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/modernizr-custom.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true">
+
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var mapa = null;
+        var mapaMarcador = null;
+
+        if(Modernizr.geolocation){
+          alert("Tu navegador Si soporta Geolocalización");
+          navigator.geolocation.watchPosition(mostrarCoordenadas, mostrarErrores,{maximumAge:1000,
+                                              timeout:300000, enableHighAccuracy:true});
+        }else{
+          alert("Tu navegador NO soporta Geolocalización");
+          return;
+        }
+
+        function mostrarCoordenadas(posicion){
+          var latitud = posicion.coords.latitude;
+          var longitud = posicion.coords.longitude;
+          var gmPosicion = new google.maps.LatLng(latitud,longitud);
+          if (mapa== null) {
+            var opciones = {center: gmPosicion, zoom:15, mapTypeId: google.maps.MapTypeId.ROADMAP};
+            mapa = new google.maps.Map(document.getElementById("resultado"), opciones);
+            mapaMarcador = new google.maps.Marker({position:gmPosicion, title:"Estás aqui"});
+            mapaMarcador.setMap(mapa);
+          }else{
+            mapa.panTo(gmPosicion);
+            mapaMarcador.setPosition(gmPosicion);
+          }
+        }
+
+        function mostrarErrores(error) {
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              alert("Permiso denegado");
+              break;
+            case error.POSITION_UNAVAILABLE:
+              alert("Posición no disponible");
+              break;
+            case error.TIMEOUT:
+              alert("Tiempo de espera agotado");
+              break;
+            default:
+              alert("Error desconocido de Geolocalización: "+error.code);
+          }
+        }
+      })
+    </script>
+  </head>
+  <body>
+    <div id="resultado"></div>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+/*Selectores Siblings*/
+
+/*Selecciona los <p> cuyo padre es un div */
+
+div > p{
+  color: red;
+  background-color: yellow;
+}
+
+
+/*Selecciona los parrafos <p> adyacentes a div,
+y deben tener el mismo nivel de jerarquia*/
+
+div + p{
+  color: red;
+  background-color: yellow;
+}
+
+
+/*Seleccionar los <p> cuyo <div> es hermano (sibling)
+<p> debe estar despues de <div>. No es necesariamente adyacente*/
+div ~ p{
+  color: red;
+  background-color: yellow;
+}
+
+/*Selectores por Atributos*/
+
+/*Elemento <a> del atributo href que comience con http*/
+a[href^=http]{
+  color:red;
+}
+
+/*Elemnto <a> del atributo href termine con .html*/
+a[href$=".html"]{
+  color:blueviolet;
+}
+
+/*Elemento <a> del atributo href que termine con pdf*/
+a[href$=".pdf"]{
+  background: url(../images/.....png) no-repeat right;
+  padding-right: 25px;
+  color: darkred;
+}
+
+/*Selectores N-child*/
+
+h1:first-child{ /*Selecciona el primer elemento h1 que encuentre*/
+  color:blue;
+}
+
+h1:last-of-type{ /*Selecciona el ultimo elemnto h1 que encuentre*/
+  color: yellowgrenn;
+}
+
+li:first-child{
+  color: red;
+}
+
+/*Selecciona el segundo elemento*/
+li:nth-child(2){
+  color:green;
+}
+/*Selecciona el tercer elemento de la lista la N significa que va a ir seleccionanado de 3 en 3*/
+li:nth-child(3n){
+  color: purple;
+}
+
+/*Selecciona cada 3 elementos comenzando del 2do elemento*/
+li:nth-child(3n+2){
+  color:purple;
+}
+
+/*Selecciona los elementos de manera inversa comenzando en el 4to*/
+li:nth-child(-1n+4){
+  color: purple;
+}
+
+/*Selecciona el 4to elemento contando en reversa*/
+li:nth-last-child(4){
+  color: purple;
+}
+
+/*Seleccionar el 7mo elemento contando en reversa*/
+li:nth-last-child(1n+7){
+  color: purple;
+}
+
+/*Selecciona los ultimos 3 y primeros 3 elementos de la lista*/
+li:nth-child(1n+8),li:nth-last-child(1n+8){
+  color:purple;
+}

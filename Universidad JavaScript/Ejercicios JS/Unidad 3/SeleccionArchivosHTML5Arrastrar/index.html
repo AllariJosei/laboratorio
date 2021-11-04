@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+    <title>Uso de Drag and Drop para manejo de Archivos HTML5</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/modernizr-custom.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        if(Modernizr.dragandrop && window.FileList){
+          alert("Tu navegador Si soporta el API File y Drag and Drop");
+        }else{
+          alert("No se soporta Api File o Drag and Drop");
+        }
+
+        $("#zona_arrastrar").bind({
+          "drop": manejoDrop,
+          "dragover": manejoDragOver
+        });
+
+        function manejoDragOver(evento) {
+          evento.stopPropagation();
+          evento.preventDefault();
+        }
+
+        function manejoDrop(evento) {
+          evento.stopPropagation();
+          evento.preventDefault();
+          //Jquery envuelve el evento original
+          var dataTransfer = evento.dataTransfer || (evento.originalEvent && evento.originalEvent.dataTransfer);
+          var archivos = evento.target.files || (dataTransfer && dataTransfer.files);
+          $("#salida").html("");
+
+          for (var i = 0; i < archivos.length; i++) {
+            var informacion = "<p>Nombre: "+archivos[i].name +", Tamaño: "+ archivos[i].size +
+              ", Tipo Mime: " + archivos[i].type + "</p>";
+              $("#salida").append(informacion);
+          }
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Uso de Drag and Drop para manejo de Archivos HTML5</h1>
+    <p>Arrastra tus archivos aqui:</p>
+    <div id="zona_arrastrar">
+    </div>
+    <p>Resultado:</p>
+    <div id="salida">
+
+    </div>
+  </body>
+</html>
